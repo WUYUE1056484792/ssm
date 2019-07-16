@@ -37,7 +37,6 @@ public class UserController {
         return pageInfo;
     }
 
-
     @ApiOperation(value = "用户列表" ,  notes="用户列表" ,tags = {SwaggerTagConstants.ADMIN})
     @RequestMapping(value="/list",method= RequestMethod.GET)
     public List<User> list(){

@@ -396,7 +396,6 @@ public final class RedisUtil {
             return null;
         }
     }
-
         /**
          * 将list放入缓存
          * @param key 键
