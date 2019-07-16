@@ -3,12 +3,13 @@ package com.example.xiaowu.controller;
 import com.example.xiaowu.SwaggerTagConstants;
 import com.example.xiaowu.domain.User;
 import com.example.xiaowu.service.UserService;
+import com.example.xiaowu.utils.RedisUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,9 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RedisUtil redisUtil;
 
     @ApiOperation(value = "用户分页列表" ,  notes="用户分页列表", tags = {SwaggerTagConstants.ADMIN})
     @RequestMapping(value="/pagelist",method= RequestMethod.GET)
@@ -40,6 +44,15 @@ public class UserController {
         System.out.println("访问了不是分页的接口数据");
         List<User> list = userService.findAllUser();
         return list;
+    }
+
+    @ApiOperation(value = "测试redis" ,  notes="测试redis" ,tags = {SwaggerTagConstants.ADMIN})
+    @RequestMapping(value="/redis",method= RequestMethod.GET)
+    public String redis(@RequestParam(name = "key") String key,@RequestParam(name = "value") String value){
+        System.out.println("测试redis存数据");
+        //redisTemplate.opsForValue().set(key, value);
+        redisUtil.set(key,value);
+        return key;
     }
 
 }
