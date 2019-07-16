@@ -1,6 +1,8 @@
 package com.example.xiaowu.controller;
 
 import com.example.xiaowu.SwaggerTagConstants;
+import com.example.xiaowu.domain.DataMsg;
+import com.example.xiaowu.domain.Radar;
 import com.example.xiaowu.domain.User;
 import com.example.xiaowu.service.UserService;
 import com.example.xiaowu.utils.RedisUtil;
@@ -52,6 +54,16 @@ public class UserController {
         //redisTemplate.opsForValue().set(key, value);
         redisUtil.set(key,value);
         return key;
+    }
+
+
+    @ApiOperation(value = "插入雷达图" ,  notes="插入雷达图" ,tags = {SwaggerTagConstants.ADMIN})
+    @RequestMapping(value="/insertRadarUrl",method= RequestMethod.GET)
+    public DataMsg insertRadarUrl(@RequestBody Radar radar){
+        DataMsg dataMsg = new DataMsg();
+        System.out.println("插入雷达图");
+        //userService.insertRadarUrl();
+        return dataMsg;
     }
 
 }
