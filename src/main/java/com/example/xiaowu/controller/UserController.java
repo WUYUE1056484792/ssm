@@ -6,6 +6,7 @@ import com.example.xiaowu.domain.Radar;
 import com.example.xiaowu.domain.User;
 import com.example.xiaowu.service.UserService;
 import com.example.xiaowu.utils.RedisUtil;
+import com.example.xiaowu.utils.UuidUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
@@ -57,13 +58,25 @@ public class UserController {
     }
 
     @ApiOperation(value = "插入雷达图" ,  notes="插入雷达图" ,tags = {SwaggerTagConstants.ADMIN})
-    @RequestMapping(value="/insertRadarUrl",method= RequestMethod.GET)
+    @RequestMapping(value="/insertRadarUrl",method= RequestMethod.POST)
     public DataMsg insertRadarUrl(@RequestBody Radar radar){
+        System.out.println("==========插入雷达图============");
         DataMsg dataMsg = new DataMsg();
-        System.out.println("插入雷达图");
-        //userService.insertRadarUrl();
+        radar.setId(UuidUtil.get32UUID());
+        //根据插入时间查询是否有数据
+        Radar radar1 = userService.findUrlByInsertTime(radar);
+        if(radar1!=null){
+            dataMsg.setStateCode("400");
+            dataMsg.setStateMsg("数据库存在");
+        }else {
+            userService.insertRadarUrl(radar);
+        }
+
         return dataMsg;
     }
+
+
+
 
 
 }

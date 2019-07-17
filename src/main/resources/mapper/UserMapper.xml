@@ -4,4 +4,25 @@
     <select id="findAllUser" resultType="com.example.xiaowu.domain.User">
       select * from user
     </select>
+
+
+
+    <!--添加部门基本信息 -->
+    <insert id="insertRadarUrl" parameterType="com.example.xiaowu.domain.Radar">
+        INSERT INTO e_radarurl_info(
+        id,
+        insert_time,
+        url
+        ) VALUES(
+        #{id},
+        #{insert_time},
+        #{url}
+        )
+    </insert>
+
+
+    <select id="findUrlByInsertTime" parameterType="com.example.xiaowu.domain.Radar" resultType="com.example.xiaowu.domain.Radar">
+        select * from e_radarurl_info WHERE insert_time = #{insert_time}
+    </select>
+
 </mapper>
