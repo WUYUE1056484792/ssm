@@ -107,6 +107,33 @@
 			<version>1.2.45</version>
 		</dependency>
 
+
+
+		<!-- npl本地demo jar包 -->
+		<dependency>
+			<groupId>com.example.demo</groupId>
+			<artifactId>demo</artifactId>
+			<version>0.0.1</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/demo.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>cma.cimiss</groupId>
+			<artifactId>music-client</artifactId>
+			<scope>system</scope>
+			<version>v1.6.0</version>
+			<systemPath>${project.basedir}/lib/music-client-v1.6.0.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>Ice</groupId>
+			<artifactId>Ice</artifactId>
+			<scope>system</scope>
+			<version>1.0.0</version>
+			<systemPath>${project.basedir}/lib/Ice.jar</systemPath>
+		</dependency>
+
+
     </dependencies>
 
 	<build>
@@ -114,8 +141,13 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+
 			</plugin>
 		</plugins>
+
+
+
+
 	</build>
 
 </project>

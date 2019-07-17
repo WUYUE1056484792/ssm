@@ -1,10 +1,13 @@
 package com.example.xiaowu.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.xiaowu.SwaggerTagConstants;
 import com.example.xiaowu.domain.DataMsg;
 import com.example.xiaowu.domain.Radar;
 import com.example.xiaowu.domain.User;
 import com.example.xiaowu.service.UserService;
+import com.example.xiaowu.utils.DateUtil;
+import com.example.xiaowu.utils.MUSICUtil;
 import com.example.xiaowu.utils.RedisUtil;
 import com.example.xiaowu.utils.UuidUtil;
 import com.github.pagehelper.PageHelper;
@@ -15,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Api(description = "用户接口")
@@ -76,6 +80,32 @@ public class UserController {
     }
 
 
+
+
+    @ApiOperation(value = "测试jar" ,  notes="测试jar" ,tags = {SwaggerTagConstants.ADMIN})
+    @RequestMapping(value="/testjar",method= RequestMethod.GET)
+    public String testjar(){
+        System.out.println("测试jar");
+
+        String interfaceId = "getSurfEleInRectByTime" ;
+        HashMap<String, String> params = new HashMap<String, String>();
+        //必选参数
+        params.put("dataCode", "SURF_CHN_MUL_HOR") ; //资料代码
+        params.put("elements", "Lat,Lon,PRE_1h,PRE_3h,PRE_6h,PRE_12h,PRE_24h") ;
+        String date= DateUtil.getMusicDate(0);
+        params.put("times", date); //系统当前时间
+        params.put("minLat", "3.51");
+        params.put("minLon", "73.33");
+        params.put("maxLat", "53.33");
+        params.put("maxLon", "135.05");
+        params.put("limitCnt", "30");
+        String dataFormat = "json";
+        JSONObject jsonObject= MUSICUtil.getData(interfaceId, params, dataFormat);
+
+
+
+        return "";
+    }
 
 
 
