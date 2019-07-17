@@ -56,7 +56,6 @@ public class UserController {
         return key;
     }
 
-
     @ApiOperation(value = "插入雷达图" ,  notes="插入雷达图" ,tags = {SwaggerTagConstants.ADMIN})
     @RequestMapping(value="/insertRadarUrl",method= RequestMethod.GET)
     public DataMsg insertRadarUrl(@RequestBody Radar radar){

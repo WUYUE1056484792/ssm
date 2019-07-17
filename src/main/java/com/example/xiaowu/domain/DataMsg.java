@@ -49,6 +49,5 @@ public class DataMsg {
 
     public  static  void main (String [] args){
 
-
     }
 }

@@ -21,7 +21,6 @@ public class ParamData extends HashMap implements Map {
 	Map<Object, Object> map = null;
 	HttpServletRequest request;
 
-
 	public ParamData(Map<Object, Object> map) {
 		this.map = map;
 	}
